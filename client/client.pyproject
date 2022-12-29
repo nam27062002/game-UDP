@@ -1,0 +1,3 @@
+{
+    "files": ["main.py","assets/Friend.qml","pages/PageLogin.qml","assets/Btn.qml","assets/Online.qml","main.qml","pages/PageHome.qml","pages/PageRegister.qml","assets/Icon.qml","assets/FormInput.qml","pages/PageHome1.qml","assets/FriendRequest.qml"]
+}
