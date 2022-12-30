@@ -112,5 +112,11 @@ Window {
             }
         }
     }
+    Connections{
+        target: backend
+        function onCloseProgram(data){
+            mainWindow.close()
+        }
+    }
 
 }

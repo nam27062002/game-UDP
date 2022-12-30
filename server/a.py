@@ -1,5 +1,3 @@
-a = "SELCT1 in3478 372483 32748"
-if "select" not in a and "SELECT" not in a:
-    print("Hello")
-else:
-    print("Hi")
+a = [1,2,3,4,5]
+if 1 in a:
+    print("hi")

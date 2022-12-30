@@ -1,4 +1,4 @@
-import threading,pickle
+import threading,pickle,sys
 from PySide2.QtCore import QObject,Slot,Signal
 from DbConnection import Database
 
@@ -19,6 +19,7 @@ class controller(QObject):
     statusAddfriend = Signal(int)
     listFriendRequest = Signal(list)
     noticeAddFriend = Signal(str)
+    closeProgram = Signal(str)
     @Slot(str,str)
     def checkAccount(self,username,password):
         self.statusAccount.emit(self.db.checkAccount(username,password))
@@ -64,6 +65,10 @@ class controller(QObject):
     @Slot(str)
     def acceptAddFriend(self,nickname):
         self.db.acceptAddFriend(nickname)
+
+    @Slot(str,str)
+    def sendMessage(self,message,nickname):
+        print(message,nickname)
 class readClient:
     def __init__(self,controler: controller):
         self.controller = controler
@@ -83,5 +88,8 @@ class readClient:
                     self.controller.getListFriendRequest()
                 elif data[0] == 3: # da duoc addfriend
                     self.controller.getListFriend()
+                elif data[0] == 4: # out server
+                    self.controller.closeProgram.emit('close')
+                    break
             except:
                 pass

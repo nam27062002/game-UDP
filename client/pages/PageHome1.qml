@@ -343,6 +343,9 @@ Rectangle{
                             textInput.text = ""
                         }
                         else{
+                            if (rectangle9.visible == true){
+                                rectangle9.visible = false
+                            }
                             rectangle7.visible = true
                         }
                     }
@@ -393,6 +396,11 @@ Rectangle{
 
                             }
                             else{
+                                if (rectangle7.visible == true){
+                                    rectangle7.visible = false
+                                    text2.visible = false
+                                    textInput.text = ""
+                                }
                                 backend.getListFriendRequest()
                                 rectangle9.visible = true
                             }
@@ -479,6 +487,82 @@ Rectangle{
             }
         }
     }
+    Rectangle {
+        id: rectangle11
+        x: 626
+        y: 396
+        width: 328
+        height: 404
+        color: "#1c263a"
+        visible: true
+        Rectangle {
+            id: rectangle12
+            x: 0
+            y: 0
+            width: 328
+            height: 72
+            color: "#00000000"
+            Friend{
+                id: hehehe
+                width: 200
+                height: 50
+                name:""
+                color: "#00000000"
+                x: 8
+                y: 11
+                view: true
+            }
+            ImgButton{
+                x: 293
+                y: 19
+                btnColorDefault: "#1c263a"
+                btnIconSource: "../images/close_icon.svg"
+                onClicked: {
+                    rectangle11.visible = false
+                }
+            }
+        }
+
+        Rectangle {
+            id: rectangle13
+            x: 0
+            y: 70
+            width: 330
+            height: 1
+            color: "#ffffff"
+
+        }
+        Rectangle {
+            id: rectangle14
+            x: 2
+            y: 324
+            width: 330
+            height: 42
+            color: "#00000000"
+            border.color: "yellow"
+            border.width: 1
+
+            TextInput {
+                id: textInput1
+                x: 13
+                y: 0
+                focus: true
+                width: 317
+                height: 42
+                color: "#ffffff"
+                text: qsTr("")
+                font.pixelSize: 15
+                verticalAlignment: Text.AlignVCenter
+                font.italic: true
+                Keys.onPressed: (event)=> {
+                    if (event.key == 16777220){
+                        backend.sendMessage(textInput1.text,hehehe.name)
+                    }
+                }
+
+            }
+        }
+    }
     function notification(){
         notice.running = true
         delay(5000, function() {
@@ -499,6 +583,16 @@ Rectangle{
                 text2.visible = true
                 text2.color = "#fe4d4d"
                 text2.text = qsTr("Bạn bị điên à")
+            }
+            else if (data == -2){
+                text2.visible = true
+                text2.color = "#fe4d4d"
+                text2.text = qsTr("Đã có trong danh sách bạn bè")
+            }
+            else if (data == -3){
+                text2.visible = true
+                text2.color = "#fe4d4d"
+                text2.text = qsTr("Người này đã gửi yêu cầu kết bạn với bạn")
             }
             else if (data == 0){
                 text2.visible = true
@@ -538,11 +632,13 @@ Rectangle{
         }
     }
 
+
+
 }
 
 
 /*##^##
 Designer {
-    D{i:0;autoSize:true;formeditorZoom:0.66;height:800;width:1200}
+    D{i:0;autoSize:true;formeditorZoom:0.9;height:800;width:1200}
 }
 ##^##*/

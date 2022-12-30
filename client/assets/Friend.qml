@@ -4,15 +4,22 @@ Rectangle{
     id: hello
     property bool isOnline: false
     property string name: "Lam Tung Vu"
+    property bool view: false
     color: "#2c313c"
     MouseArea{
         anchors.fill: parent
         hoverEnabled: true
         onEntered: {
-            color = "#262a34"
+            if (!view)
+                color = "#262a34"
         }
         onExited: {
-            color = "#2c313c"
+            if (!view)
+                color = "#2c313c"
+        }
+        onClicked: {
+            rectangle11.visible = true
+            hehehe.name = name
         }
     }
     Rectangle {

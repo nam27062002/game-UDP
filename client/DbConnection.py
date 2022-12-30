@@ -123,6 +123,10 @@ class Database:
     def addFriend(self,nickname):
         if nickname == self.account.nickname:
             return -1
+        elif self.listFriend.listFriendOffline.count(nickname) != 0 or self.listFriend.listFriendOnline.count(nickname) != 0:
+            return -2
+        elif self.getListFriendRequest().count(nickname) != 0:
+            return -3
         else:
             check = self.checkNickname(nickname)
             if check:
@@ -191,3 +195,6 @@ class Database:
         s2 = self.addFriendHandel(s2,self.account.id)
         self.updateListFriend(id,s2)
         self.client.write([4,nickname])
+
+    def sendMessage(self,nickname):
+        pass

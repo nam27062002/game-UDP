@@ -26,6 +26,11 @@ class newThreadProcess:
     def run(self):
         arr = self.data
         if arr[0] == 0: # login      
+            for i in self.server.mapUser:
+                if self.server.mapUser[i] == arr[1]: # Da login tu truoc
+                    self.sendDataByAddress([4],i) # gui mess out server
+                    self.server.mapUser.pop(i)
+                    break
             self.server.mapUser[self.address] = arr[1]
             self.sendToAllClientExceptAddress([1,arr[1]])
         elif arr[0] == 1: # logout
